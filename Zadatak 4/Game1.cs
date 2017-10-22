@@ -7,6 +7,22 @@ using Zadatak_3;
 
 namespace Zadatak_4
 {
+
+    public interface IPhysicalObject2D
+    {
+        float X { get; set; }
+        float Y { get; set; }
+        int Width { get; set; }
+        int Height { get; set; }
+    }
+
+    public class CollisionDetector
+    {
+        public static bool Overlaps(IPhysicalObject2D a, IPhysicalObject2D b)
+        {
+            return true;
+        }
+    }
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
@@ -24,6 +40,9 @@ namespace Zadatak_4
             };
             Content.RootDirectory = "Content";
         }
+
+        public GenericList<Wall> Walls { get; set; }
+        public GenericList<Wall> Goals { get; set; }
 
         /// <summary>
         /// Bottom paddle object
@@ -63,8 +82,28 @@ namespace Zadatak_4
         /// </summary>
         protected override void Initialize()
         {
-            // Screen bounds details . Use this information to set up game objects positions.
+
             var screenBounds = GraphicsDevice.Viewport.Bounds;
+
+            Walls = new GenericList<Wall>
+            {
+                // try with 100 for default wall size !
+                new Wall (-GameConstants.WallDefaultSize, 0,
+                    GameConstants.WallDefaultSize, screenBounds.Height ),
+                new Wall (screenBounds.Right, 0, GameConstants.WallDefaultSize,
+                    screenBounds.Height)
+            };
+
+            Goals = new GenericList<Wall>
+            {
+                new Wall (0, screenBounds.Height, screenBounds.Width,
+                    GameConstants.WallDefaultSize),
+                new Wall (screenBounds.Top, -GameConstants.WallDefaultSize,
+                    screenBounds.Width, GameConstants.WallDefaultSize)
+            };
+
+            // Screen bounds details. Use this information to set up game objects positions.
+            
             PaddleBottom = new Paddle(GameConstants.PaddleDefaultWidth,
                 GameConstants.PaddleDefaulHeight, GameConstants.PaddleDefaulSpeed);
             PaddleBottom.X = screenBounds.Width / 2f - PaddleBottom.Width / 2f;
@@ -190,7 +229,22 @@ namespace Zadatak_4
         }
     }
 
-    public abstract class Sprite
+    public class Wall : IPhysicalObject2D
+    {
+        public float X { get; set; }
+        public float Y { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public Wall(float x, float y, int width, int height)
+        {
+            X = x;
+            Y = y;
+            Width = width;
+            Height = height;
+        }
+    }
+
+    public abstract class Sprite : IPhysicalObject2D
     {
         public float X { get; set; }
         public float Y { get; set; }
@@ -291,5 +345,6 @@ namespace Zadatak_4
         public const float DefaultInitialBallSpeed = 0.4f;
         public const float DefaultBallBumpSpeedIncreaseFactor = 1.05f;
         public const int DefaultBallSize = 40;
+        public const int WallDefaultSize = 100;
     }
 }
