@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Threading;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -20,7 +21,8 @@ namespace Zadatak_4
     {
         public static bool Overlaps(IPhysicalObject2D a, IPhysicalObject2D b)
         {
-            return true;
+            return (a.X - b.Width < b.X && b.X < a.X + a.Width 
+                   && a.Y - b.Height < b.Y && b.Y < a.Y + a.Height);
         }
     }
     /// <summary>
@@ -204,6 +206,41 @@ namespace Zadatak_4
             Ball.X += ballPositionChange.X;
             Ball.Y += ballPositionChange.Y;
 
+            // Ball - side walls
+            // If ball has collision with any of the side wall
+            // Reverse X direction of the ball
+            // Increase the ball speed by bump speed increase factor
+            // If ball has collision with winning walls ( goals )
+            // Move ball to the center
+            // Reset ball speed
+            // Play hit sound with : HitSound . Play ();
+            //
+            // If ball has collision with paddles ( with appropriate movement direction !!)
+            // Reverse Y direction of the ball
+            // Increase the ball speed by bump speed increase factor
+
+            if (CollisionDetector.Overlaps(Ball, PaddleBottom) || CollisionDetector.Overlaps(Ball, PaddleTop))
+            {
+                Ball.InvertY();
+                HitSound.Play();
+            }
+            else
+            {
+                foreach (var tWall in Walls)
+                {
+                    if (CollisionDetector.Overlaps(Ball, tWall))
+                    {
+                        Ball.InvertX();
+                    }
+                }
+            }
+            foreach (var tGoal in Goals)
+            {
+                if (!CollisionDetector.Overlaps(Ball, tGoal)) continue;
+                Ball.X = screenBounds.Width / 2f;
+                Ball.Y = screenBounds.Height / 2f;
+            }
+
             base.Update(gameTime);
         }
 
@@ -311,6 +348,17 @@ namespace Zadatak_4
             // Initial direction
             Direction = new Vector2(1, 1);
         }
+
+        public void InvertX()
+        {
+            Direction *= (-Vector2.UnitX + Vector2.UnitY);
+        }
+
+        public void InvertY()
+        {
+            Direction *= (Vector2.UnitX - Vector2.UnitY);
+        }
+
     }
 
     /// <summary>
