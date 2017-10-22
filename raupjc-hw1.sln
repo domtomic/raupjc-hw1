@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zadatak 1", "Zadatak 1\Zadatak 1.csproj", "{81F529CC-9125-4E5B-B245-5322E0DF6C86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zadatak 2", "Zadatak 2\Zadatak 2.csproj", "{9E317221-DA88-44BC-A926-43F38B087482}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zadatak 3", "Zadatak 3\Zadatak 3.csproj", "{44163BC9-D503-4C0B-B322-BA705F9D04BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81F529CC-9125-4E5B-B245-5322E0DF6C86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81F529CC-9125-4E5B-B245-5322E0DF6C86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81F529CC-9125-4E5B-B245-5322E0DF6C86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81F529CC-9125-4E5B-B245-5322E0DF6C86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E317221-DA88-44BC-A926-43F38B087482}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E317221-DA88-44BC-A926-43F38B087482}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E317221-DA88-44BC-A926-43F38B087482}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E317221-DA88-44BC-A926-43F38B087482}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44163BC9-D503-4C0B-B322-BA705F9D04BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44163BC9-D503-4C0B-B322-BA705F9D04BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44163BC9-D503-4C0B-B322-BA705F9D04BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44163BC9-D503-4C0B-B322-BA705F9D04BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {90C5D108-5065-4660-AE40-43DCFD63C0D3}
+	EndGlobalSection
+EndGlobal
